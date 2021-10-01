@@ -10,15 +10,16 @@ class CSVSource implements SourceInterface
 {
     protected $file;
     protected $fields = [];
-    protected $perPage = 10;
+    protected $perPage;
 
     protected $delimiter = ',';
     protected $enclosure = '"';
     protected $escape = '\\';
 
-    public function __construct($file)
+    public function __construct($file, $perPage = 10)
     {
         $this->file = $file;
+        $this->perPage = $perPage;
 
         $firstCSVLine = $this->getCSVLines(0, 1);
         $this->fields = reset($firstCSVLine);
