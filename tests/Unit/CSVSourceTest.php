@@ -23,7 +23,7 @@ final class CSVSourceTest extends TestCase
 
         $dataRows = $source->getDataRows(1, ['Title', 'Author']);
 
-        $this->assertCount(2, $dataRows);
+        $this->assertCount(6, $dataRows);
 
         $dataItems = $dataRows[0]->getDataItems();
 
@@ -45,6 +45,46 @@ final class CSVSourceTest extends TestCase
         $this->assertEquals('Author', $dataItems[1]->fieldName);
         $this->assertEquals('Mr Bear', $dataItems[1]->value);
 
+        $dataItems = $dataRows[2]->getDataItems();
+
+        $this->assertCount(2, $dataItems);
+
+        $this->assertEquals('Title', $dataItems[0]->fieldName);
+        $this->assertEquals('More Things', $dataItems[0]->value);
+
+        $this->assertEquals('Author', $dataItems[1]->fieldName);
+        $this->assertEquals('To Add More Pages', $dataItems[1]->value);
+
+        $dataItems = $dataRows[3]->getDataItems();
+
+        $this->assertCount(2, $dataItems);
+
+        $this->assertEquals('Title', $dataItems[0]->fieldName);
+        $this->assertEquals('Even More Things', $dataItems[0]->value);
+
+        $this->assertEquals('Author', $dataItems[1]->fieldName);
+        $this->assertEquals('To Add Even More Pages', $dataItems[1]->value);
+
+        $dataItems = $dataRows[4]->getDataItems();
+
+        $this->assertCount(2, $dataItems);
+
+        $this->assertEquals('Title', $dataItems[0]->fieldName);
+        $this->assertEquals('The First Of Two More Things', $dataItems[0]->value);
+
+        $this->assertEquals('Author', $dataItems[1]->fieldName);
+        $this->assertEquals('To Add A Final Page', $dataItems[1]->value);
+
+        $dataItems = $dataRows[5]->getDataItems();
+
+        $this->assertCount(2, $dataItems);
+
+        $this->assertEquals('Title', $dataItems[0]->fieldName);
+        $this->assertEquals('The Second Of Two More Things', $dataItems[0]->value);
+
+        $this->assertEquals('Author', $dataItems[1]->fieldName);
+        $this->assertEquals('To Complete A Final Page', $dataItems[1]->value);
+
         $dataRows = $source->getDataRows(2, ['Title', 'Author']);
 
         $this->assertCount(0, $dataRows);
@@ -56,7 +96,7 @@ final class CSVSourceTest extends TestCase
 
         $dataRows = $source->getDataRows(1, ['Author']);
 
-        $this->assertCount(2, $dataRows);
+        $this->assertCount(6, $dataRows);
 
         $dataItems = $dataRows[0]->getDataItems();
 
@@ -72,6 +112,34 @@ final class CSVSourceTest extends TestCase
         $this->assertEquals('Author', $dataItems[0]->fieldName);
         $this->assertEquals('Mr Bear', $dataItems[0]->value);
 
+        $dataItems = $dataRows[2]->getDataItems();
+
+        $this->assertCount(1, $dataItems);
+
+        $this->assertEquals('Author', $dataItems[0]->fieldName);
+        $this->assertEquals('To Add More Pages', $dataItems[0]->value);
+
+        $dataItems = $dataRows[3]->getDataItems();
+
+        $this->assertCount(1, $dataItems);
+
+        $this->assertEquals('Author', $dataItems[0]->fieldName);
+        $this->assertEquals('To Add Even More Pages', $dataItems[0]->value);
+
+        $dataItems = $dataRows[4]->getDataItems();
+
+        $this->assertCount(1, $dataItems);
+
+        $this->assertEquals('Author', $dataItems[0]->fieldName);
+        $this->assertEquals('To Add A Final Page', $dataItems[0]->value);
+
+        $dataItems = $dataRows[5]->getDataItems();
+
+        $this->assertCount(1, $dataItems);
+
+        $this->assertEquals('Author', $dataItems[0]->fieldName);
+        $this->assertEquals('To Complete A Final Page', $dataItems[0]->value);
+
         $dataRows = $source->getDataRows(2, ['Author']);
 
         $this->assertCount(0, $dataRows);
@@ -81,7 +149,7 @@ final class CSVSourceTest extends TestCase
     {
         $source = $this->createSource();
 
-        $this->assertEquals(2, $source->countDataRows());
+        $this->assertEquals(6, $source->countDataRows());
     }
 
     public function testCountPages()
